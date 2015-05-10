@@ -1,13 +1,25 @@
 angular.module('demo', []);
 
 angular.module('demo').controller('DemoController', function($scope) {
-    $scope.tasks = [];
-    
-    $scope.create = function(task) {
-        $scope.tasks.push(task);
-    }
+    $scope.calculate = function(montlyPayment, noMonths, interestRate) {
+        amount = montlyPayment * (interestRate / 100 + 1) * noMonths;
 
-    $scope.remove = function(index) {
-        $scope.tasks.splice(index);
+        if (isNaN(amount)) {
+            amount = 'premalo podatkov za izračun.';            
+        } 
+
+        $scope.amount = amount;
+    }
+});
+
+angular.module('demo').controller('AnotherDemoController', function($scope) {
+    $scope.calculate = function(montlyPayment, noMonths, interestRate) {
+        amount = montlyPayment * noMonths;
+
+        if (isNaN(amount)) {
+            amount = 'premalo podatkov za izračun.';            
+        } 
+
+        $scope.amount = amount;
     }
 });
